@@ -1,0 +1,11 @@
+{
+  "schema": "glaciereq.promotion-authority-grant.v1",
+  "repository": "GlacierEQ/together-ai-open-model-fidelity-passport",
+  "source_sha": "e751e449b82e35ec2ff35d59ea20d005a625461bf9ccb9126f9b8855bc7d247c",
+  "proof_receipt_digest": "c32f65497b8fce49c38064111af2d4afa0e0205085cc3f1782020b910e32a4af",
+  "not_after": 1788948702.65331,
+  "mac": "ec10f86481290cecad7d8d1fbc8480566b4a22dd1053a7b0850b056c9cb1f044",
+  "issuer": "local_operator_promotion_authority",
+  "verified": true,
+  "secret_ref": "src/promotion_authority.py::LOCAL_OPERATOR_SECRET"
+}

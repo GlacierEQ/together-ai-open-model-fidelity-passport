@@ -1,0 +1,26 @@
+{
+  "schema": "glaciereq.operability-receipt.v1",
+  "repository": "GlacierEQ/together-ai-open-model-fidelity-passport",
+  "at": "2026-08-10T10:11Z",
+  "source_sha": "e751e449b82e35ec2ff35d59ea20d005a625461bf9ccb9126f9b8855bc7d247c",
+  "entry": "scripts/operate.py",
+  "primary_output": {
+    "module": "open_model_fidelity_passport",
+    "ok": true,
+    "repository": "GlacierEQ/together-ai-open-model-fidelity-passport",
+    "smoke": {
+      "args": [
+        "OpenModelFidelityPassportRequest(subject"
+      ],
+      "content_checked": true,
+      "invoked": true,
+      "kind": "class",
+      "method": "evaluate",
+      "module_local": true,
+      "name": "Mechanism",
+      "result": "OpenModelFidelityPassportReceipt(decision=<Decision.ALLOW: 'ALLOW'>, reasons=('scaffold_allow',), digest='de5a200a89430d2dec7318cf5aea51ee466c45d752e842d6d852e6bed15c045c', metrics={'scaffold': True, 'payload_keys': [], 'budget': 1.0})"
+    }
+  },
+  "dual_run_ok": true,
+  "result": "PASS"
+}

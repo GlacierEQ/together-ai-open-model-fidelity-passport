@@ -1,0 +1,31 @@
+{
+  "schema": "glaciereq.proof-receipt.v1",
+  "repository": "GlacierEQ/together-ai-open-model-fidelity-passport",
+  "source_sha": "e751e449b82e35ec2ff35d59ea20d005a625461bf9ccb9126f9b8855bc7d247c",
+  "proof_id": "elite-together-ai-open-model-fidelity-passport-1786356702",
+  "environment": {
+    "python": "/Users/kcbflux/.local/bin/python3.11",
+    "PYTHONPATH": "/Users/kcbflux/GlacierEQ_Swarm/job-app/repos/together-ai-open-model-fidelity-passport:/Users/kcbflux/GlacierEQ_Swarm/job-app/repos/together-ai-open-model-fidelity-passport/src",
+    "entry": "unittest"
+  },
+  "tests": [
+    "/Users/kcbflux/.local/bin/python3.11 -m unittest discover -s tests -v (x2)"
+  ],
+  "adversarial_tests": [
+    "tests/test_adversarial.py"
+  ],
+  "runtime": {
+    "operate": "scripts/operate.py (x2)",
+    "dual_run_ok": true,
+    "proof_dual_run_ok": true
+  },
+  "result": "PASS",
+  "limitations": [
+    "not production deployed",
+    "reference implementation only"
+  ],
+  "timestamp": "2026-08-10T10:11Z",
+  "artifact_hashes": {
+    "operability_receipt": "7d6b1c3584780f55b1c71ef233ec586b77724ce95dc2db57c0278ac2c7a565ac"
+  }
+}

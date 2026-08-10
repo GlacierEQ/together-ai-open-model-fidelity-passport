@@ -1,0 +1,10 @@
+[project]
+name = "together-ai-open-model-fidelity-passport"
+version = "0.0.1"
+description = "Scaffold: Open-Model Fidelity Passport (independent Together AI lens)"
+requires-python = ">=3.11"
+dependencies = []
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]

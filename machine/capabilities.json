@@ -1,0 +1,12 @@
+{
+  "schema": "glaciereq.repo-capabilities.v1",
+  "repository": "GlacierEQ/together-ai-open-model-fidelity-passport",
+  "capabilities": [
+    {
+      "id": "open-model-fidelity-passport",
+      "name": "Open-Model Fidelity Passport",
+      "status": "SCAFFOLD",
+      "module": "src/open_model_fidelity_passport.py"
+    }
+  ]
+}

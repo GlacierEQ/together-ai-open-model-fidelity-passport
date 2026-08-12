@@ -1,106 +1,37 @@
-# DEV_UP_INSTRUCTIONS — for implementing AIs / engineers
-
-## Excellence group enrollment
-
-- **Group:** Wave C
-- **Wave id:** `WAVE-C-2026-08-10`
-- **Enrolled:** 2026-08-10T1002Z
-- **Phase:** SCAFFOLD_ENROLLED → implement mechanism → proof → promote (XOR gap)
-- **DoD:** Bodybuilder gates in `excellence/framework/PIP_TO_BODYBUILDER_PIPELINE.md`
+# DEV_UP_INSTRUCTIONS — implementation record
 
 **Repository:** `GlacierEQ/together-ai-open-model-fidelity-passport`  
-**Company lens (independent):** Together AI (`together_ai`)  
-**Innovation:** Open-Model Fidelity Passport  
-**Scaffold batch:** 2026-08-10T0924Z
+**Independent company lens:** Together AI  
+**Innovation:** Open-Model Fidelity Passport
 
 ## Mission
 
-Implement a **real, testable** central mechanism that addresses the bottleneck below. Do **not** claim Together AI affiliation, proprietary access, or production deployment.
+Make model serving variants machine-verifiable across lineage, transformation, behavior, compatibility and economics.
 
-### Bottleneck
-maintaining broad model choice and training-to-serving integration while proving behavioral fidelity and cost advantage at enterprise scale
+## Implemented
 
-### Brick wall
-Silent success without receipts; affiliation or production claims without evidence.
+The generic scaffold has been replaced by a deterministic serving-passport compiler and verifier.
 
-### Mechanism to implement
-Publish machine-verifiable serving fingerprints: weights lineage, quantization, sampler defaults, kernel stack, eval deltas, and compatibility constraints for every deployed model variant.
+`src/open_model_fidelity_passport.py` now:
 
-## Hard rules (fail closed)
+- binds exact weights lineage, revision and license identity;
+- records quantization/calibration, sampler defaults and canonical kernel stack;
+- encodes runtime compatibility requirements;
+- evaluates workload-level behavioral deltas against explicit fidelity budgets;
+- evaluates serving cost against an explicit cost-ratio contract;
+- verifies runtime memory/dtype/architecture compatibility;
+- detects serving configuration drift through an expected passport digest;
+- rejects malformed lineage and duplicate kernel identities;
+- emits a deterministic passport plus SHA-256 decision receipt.
 
-1. **No affiliation theater** — never state or imply Together AI employment, endorsement, or proprietary systems access.
-2. **No magic numbers / ANSWER=42** — all thresholds named constants with units in comments.
-3. **No import-only operate** — `scripts/operate.py` must call real methods and assert behavioral outputs.
-4. **No field-echo tests** — tests must change inputs and observe different outputs / refuse paths.
-5. **Deterministic** — pure functions preferred; time/randomness injected.
-6. **Receipts** — success and refuse paths return structured dicts with digests where useful.
-7. **PROMOTED XOR gap** — do not mark PROMOTED while `machine/gap-receipt.json` exists.
-8. Keep public surface free of secrets, private repos, and personal contact PII.
+`src/open_model_fidelity_cli.py` and `scripts/operate.py` execute the mechanism directly. The project is packaged with the `open-model-fidelity-passport` console command.
 
-## Implementation checklist
+## Verification contract
 
-### 1. Replace the stub mechanism
-File: `src/open_model_fidelity_passport.py`
+Behavioral tests cover valid passport generation, workload regression refusal, cost-contract refusal, runtime incompatibility, compatible runtime, passport-drift detection, invalid weights lineage, duplicate kernels, and canonical ordering. Existing adversarial coverage remains active.
 
-- Expand `OpenModelFidelityPassport` into a complete, self-contained implementation.
-- Public API must stay stable enough that tests in `tests/test_open_model_fidelity_passport.py` can be upgraded (not gutted).
-- Include at least:
-  - happy-path success with structured result
-  - explicit **refuse** path (invalid input, budget exceeded, expired grant, etc.)
-  - deterministic digest/fingerprint for auditability
-- Prefer stdlib-only unless a dependency is essential (then pin in `requirements.txt`).
+CI must pass native tests, cold-start operation, wheel build/install and installed CLI execution before Helix may mint source-bound promotion evidence.
 
-### 2. Make operate real
-File: `scripts/operate.py`
+## Truth boundary
 
-- Import the mechanism, construct inputs, call methods, print JSON receipt.
-- Exit non-zero on refuse/failure.
-- Content-check that outputs are not empty / not mere class names.
-
-### 3. Strengthen tests
-Files: `tests/test_open_model_fidelity_passport.py`, `tests/test_adversarial.py`
-
-- Positive: ≥3 behavioral cases with distinct inputs → distinct outputs.
-- Negative: malformed input, expired authority, over-budget, idempotency where relevant.
-- Adversarial: attempt to smuggle affiliation claims or bypass refuse gates — must fail closed.
-
-### 4. Freeze the target contract
-File: `machine/target-contract.json`
-
-- Update `target.purpose` and `target.central_bottleneck` only if the mechanism narrows (never broadens into marketing).
-- When tests + operate pass: set `current.implemented/tested/operable` appropriately and bind proof receipt.
-
-### 5. Excellence state
-File: `machine/excellence-state.json`
-
-- Leave `DISCOVERED` until real proof exists.
-- On elevation: follow Helix promotion policy (AUTHORITY_BOUND + PROJECTION_TRUTH_CLOSED for PROMOTED).
-
-### 6. README honesty
-- Keep non-affiliation block.
-- Document exact current boundary (what works / what does not).
-
-## Suggested algorithm sketch
-
-```text
-input → validate schema → check authority/budget/freshness
-      → compute decision (allow | refuse)
-      → emit receipt {decision, reasons[], digest, metrics}
-```
-
-## Definition of done (for the filling AI)
-
-- [ ] `python -m pytest -q` passes with **real** behavioral tests (not skip-all)
-- [ ] `python scripts/operate.py` prints a JSON receipt with decision + digest
-- [ ] Refuse path covered
-- [ ] No company affiliation language outside the explicit non-affiliation disclaimer
-- [ ] `DEV_UP_INSTRUCTIONS.md` can be marked COMPLETED with date + commit in a short receipt note at bottom
-
-## Out of scope
-
-- Cloud deploy, customer pilots, proprietary Together AI APIs
-- Multi-repo monorepos, secret material, personal data
-- Claiming “production-ready” without operate + tests + proof receipt
-
----
-*Scaffold only. Implementation is the next agent’s job.*
+No Together AI affiliation, proprietary access, production deployment, customer impact, or company partnership is claimed. Current input is normalized serving evidence; runtime/eval harvesting adapters remain a further end-to-end depth step.

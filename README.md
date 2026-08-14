@@ -29,6 +29,16 @@ The normalized record receives a deterministic `passport_digest`. Verification f
 - a persisted expected passport digest no longer matches the serving configuration;
 - kernel identities are duplicated.
 
+## Cross-bound runtime receipt adapter
+
+`runtime_receipt_adapter.compile_variant_from_receipts()` compiles a passport input from three independently produced evidence planes rather than one caller-authored variant object:
+
+1. a runtime receipt with lineage, quantization, sampler, kernel stack, compatibility and observed runtime facts;
+2. an evaluation receipt with workload outcomes; and
+3. an economics receipt with serving-cost evidence.
+
+All three receipts must independently identify the same `variant_id` and exact SHA-256 `weights_digest`. Cross-receipt identity drift fails closed before the passport is built. This prevents a serving configuration from borrowing evaluation or economics evidence produced for another model artifact.
+
 ## Run
 
 ```bash
@@ -54,12 +64,14 @@ open-model-fidelity-passport --input variant.json
 ## Proof surface
 
 - `src/open_model_fidelity_passport.py` — passport compiler/verifier
+- `src/runtime_receipt_adapter.py` — cross-binding of runtime/eval/economics evidence
 - `src/open_model_fidelity_cli.py` — installable execution surface
 - `tests/test_open_model_fidelity_passport.py` — fidelity, cost, lineage, compatibility and drift behavior
+- `tests/test_runtime_receipt_adapter.py` — cross-receipt identity and weights binding
 - `tests/test_adversarial.py` — fail-closed adversarial coverage
 - `.github/workflows/tests.yml` — tests + cold-start + wheel build/install + installed CLI
 - `machine/` — existing Helix target/proof/authority surfaces remain preserved
 
 ## Current boundary
 
-This is a vendor-neutral serving-passport mechanism. It does not claim Together AI infrastructure access, production deployment, enterprise-scale measurements, or proprietary model metadata. The next depth step is adapters that harvest exact fingerprints and eval receipts from a permitted serving runtime rather than receiving normalized observations as input.
+The passport can now be compiled from independently produced runtime, evaluation, and economics receipts that are cryptographically bound to the same declared weights digest. It does not yet harvest those receipts directly from a live serving runtime or hash model files itself, and it claims no Together AI infrastructure access, production deployment, enterprise-scale measurements, or proprietary model metadata. The next depth step is a permitted runtime collector that emits these verified receipt shapes from actual serving artifacts and evaluation runs.

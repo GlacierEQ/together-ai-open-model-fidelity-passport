@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "together-ai-open-model-fidelity-passport"
-version = "1.0.0"
+version = "1.1.0"
 description = "Machine-verifiable model lineage, fidelity, compatibility, and serving economics passport"
 requires-python = ">=3.11"
 dependencies = []
@@ -13,7 +13,7 @@ dependencies = []
 open-model-fidelity-passport = "open_model_fidelity_cli:main"
 
 [tool.setuptools]
-py-modules = ["open_model_fidelity_passport", "open_model_fidelity_cli", "promotion_authority"]
+py-modules = ["open_model_fidelity_passport", "open_model_fidelity_cli", "runtime_receipt_adapter", "promotion_authority"]
 package-dir = {"" = "src"}
 
 [tool.pytest.ini_options]

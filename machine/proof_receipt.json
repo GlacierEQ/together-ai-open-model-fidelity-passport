@@ -4,12 +4,12 @@
   "source_sha": "e751e449b82e35ec2ff35d59ea20d005a625461bf9ccb9126f9b8855bc7d247c",
   "proof_id": "elite-together-ai-open-model-fidelity-passport-1786356702",
   "environment": {
-    "python": "/Users/kcbflux/.local/bin/python3.11",
-    "PYTHONPATH": "/Users/kcbflux/GlacierEQ_Swarm/job-app/repos/together-ai-open-model-fidelity-passport:/Users/kcbflux/GlacierEQ_Swarm/job-app/repos/together-ai-open-model-fidelity-passport/src",
+    "python": "${HOME}/.local/bin/python3.11",
+    "PYTHONPATH": "${HOME}/GlacierEQ_Swarm/job-app/repos/together-ai-open-model-fidelity-passport:${HOME}/GlacierEQ_Swarm/job-app/repos/together-ai-open-model-fidelity-passport/src",
     "entry": "unittest"
   },
   "tests": [
-    "/Users/kcbflux/.local/bin/python3.11 -m unittest discover -s tests -v (x2)"
+    "${HOME}/.local/bin/python3.11 -m unittest discover -s tests -v (x2)"
   ],
   "adversarial_tests": [
     "tests/test_adversarial.py"
